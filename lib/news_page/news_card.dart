@@ -57,7 +57,7 @@ class NewsCard extends StatelessWidget{
                 aspectRatio: 1,
                 child: Padding(
                     padding: EdgeInsets.all(5),
-                child: Center(child: image)),
+                child: image),
               ),
             )
           ],

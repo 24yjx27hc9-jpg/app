@@ -38,9 +38,7 @@ class _NewsList extends State<NewsList>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Лента новостей', style: TextStyle(color: Colors.white),),
-          backgroundColor: Color(0xFF4EABC7)),
+      appBar: AppBar(title: const Text('Лента новостей')),
       body: ListView.builder(
         itemCount: news.length,
         itemBuilder: (context, index) {

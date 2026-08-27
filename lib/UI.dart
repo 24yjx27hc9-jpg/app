@@ -3,6 +3,7 @@ import 'package:flutter_notes/news_page/news_list.dart';
 import 'news_page//news_page.dart';
 import 'main_page/main_page.dart';
 import 'contacts_page/contacts_page.dart';
+import 'theme/theme.dart';
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -21,7 +22,8 @@ class _MyApp extends State<MyApp>{
         '/news_page' : (context) => const NewsList(),
         '/news_page/page' : (context) => const NewsPage(),
         '/contacts' : (context) => const ContactsPage()
-      }
+      },
+      theme: AppTheme.light,
     );
   }
 }

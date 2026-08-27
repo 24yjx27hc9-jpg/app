@@ -9,10 +9,11 @@ class MainPage extends StatefulWidget{
 }
 
 class _MainPage extends State<MainPage>{
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
-    appBar: AppBar(backgroundColor: Color(0xFF4EABC7), title: const Text('Главное меню', textDirection: TextDirection.ltr, style: TextStyle(color: Colors.white))),
+    appBar: AppBar(title: const Text('Главное меню', textDirection: TextDirection.ltr)),
     body: ButtonMenu()
     );
   }

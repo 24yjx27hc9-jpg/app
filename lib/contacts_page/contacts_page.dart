@@ -11,6 +11,7 @@ class ContactsPage extends StatefulWidget{
 class _ContactPage extends State<ContactsPage>{
   final parser = Parser(siteUrl: 'https://t67018w.sch.obrazovanie33.ru');
   List<Map<String, String>> contacts = [];
+  int? selectIndex;
 
   @override
   void initState() {
@@ -38,6 +39,7 @@ class _ContactPage extends State<ContactsPage>{
     final item = contacts[index];
     final key = item.keys.first;
     final value = item.values.first;
+    final bool isSelected = selectIndex == index;
     Widget icon = Center(); //чисто ради затычки этот центр оставил
     switch(index){
       case 0:
@@ -49,15 +51,28 @@ class _ContactPage extends State<ContactsPage>{
       case 3:
         icon = SizedBox(height: 50, width: 50, child: Image.asset('assets/images/contacts/vk.png', fit: BoxFit.contain));
     }
-    return Container(
-      margin: EdgeInsets.all(10),
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectIndex = index;
+        });
+      },
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+        margin: isSelected
+            ? EdgeInsets.all(10)
+            : EdgeInsets.zero,
+        height: isSelected
+            ? MediaQuery.of(context).size.height
+            : 150,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFF4EABC7)),
         borderRadius: BorderRadius.circular(10)),
-      child: Padding(
-        padding: EdgeInsets.all(6),
-        child: Column(
+        child: Padding(
+          padding: EdgeInsets.all(6),
+          child: Column(
           children: [
             Row(
               spacing: 3,
@@ -67,7 +82,8 @@ class _ContactPage extends State<ContactsPage>{
               ],
             ),
             Text('Контактные данные: $value', textDirection: TextDirection.ltr, style: TextStyle(fontSize: 17))
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -76,11 +92,15 @@ class _ContactPage extends State<ContactsPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Контакты', textDirection: TextDirection.ltr, style: TextStyle(color: Colors.white)), backgroundColor: const Color(0xFF4EABC7)),
-      body: ListView.builder(
-        itemCount: contacts.length,
-          itemBuilder: (context, index) => contactBuild(index)
-      ),
+      appBar: AppBar(title: const Text('Контакты', textDirection: TextDirection.ltr)),
+      body: Stack(
+        children: [
+          ListView.builder(
+              itemCount: contacts.length,
+              itemBuilder: (context, index) => contactBuild(index)
+          ),
+        ],
+      )
     );
   }
 }

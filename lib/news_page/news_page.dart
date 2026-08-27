@@ -147,7 +147,7 @@ class _NewsPage extends State<NewsPage>{
       );
     }
     return Scaffold(
-      appBar: AppBar(title: Text(news['heading'], textDirection: TextDirection.ltr, style: TextStyle(color: Colors.white),), backgroundColor: Color(0xFF4EABC7)),
+      appBar: AppBar(title: Text(news['heading'], textDirection: TextDirection.ltr)),
       body: newsContent()
     );
   }
