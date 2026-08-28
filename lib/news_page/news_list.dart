@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/parser.dart';
 import 'news_card.dart';
+import 'package:flutter_notes/custom_app_bar.dart';
 
 class NewsList extends StatefulWidget{
   const NewsList({super.key});
@@ -38,38 +39,43 @@ class _NewsList extends State<NewsList>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Лента новостей')),
-      body: ListView.builder(
-        itemCount: news.length,
-        itemBuilder: (context, index) {
-          final item = news[index];
-          final imageUrl = item['image'];
-          return NewsCard(
-            heading: item['name'] ?? '',
-            anonsText: item['anons_text'] ?? '',
-            onTap: () {
-              Navigator.pushNamed(context, '/news_page/page', arguments: item['url']);
+      extendBodyBehindAppBar: true,
+      body: Stack(
+        children: [
+          ListView.builder(
+            itemCount: news.length,
+            itemBuilder: (context, index) {
+              final item = news[index];
+              final imageUrl = item['image'];
+              return NewsCard(
+                  heading: item['name'] ?? '',
+                  anonsText: item['anons_text'] ?? '',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/news_page/page', arguments: item['url']);
+                  },
+                  image: imageUrl!.isEmpty
+                      ? const ColoredBox(
+                    color: Colors.grey,
+                    child: Icon(Icons.image_not_supported),
+                  )
+                      : ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      imageUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const ColoredBox(
+                          color: Colors.grey,
+                          child: Icon(Icons.broken_image),
+                        );
+                      },
+                    ),
+                  )
+              );
             },
-            image: imageUrl!.isEmpty
-                ? const ColoredBox(
-              color: Colors.grey,
-              child: Icon(Icons.image_not_supported),
-            )
-                : ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return const ColoredBox(
-                  color: Colors.grey,
-                  child: Icon(Icons.broken_image),
-                  );
-                },
-              ),
-            )
-          );
-        },
+          ),
+          CustomAppBar(titleText: 'Новости', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+        ],
       )
     );
   }

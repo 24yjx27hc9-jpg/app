@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/parser.dart';
+import 'package:flutter_notes/custom_app_bar.dart';
 
 class ContactsPage extends StatefulWidget{
   const ContactsPage({super.key});
@@ -54,18 +55,23 @@ class _ContactPage extends State<ContactsPage>{
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectIndex = index;
+          if (selectIndex == null && index != 0 && index != 3){
+            selectIndex = index;
+          }
+          else{
+            selectIndex = null;
+          }
         });
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: index == 1 ? 1800 : 1200),
         curve: Curves.easeInOut,
-        margin: isSelected
-            ? EdgeInsets.all(10)
-            : EdgeInsets.zero,
-        height: isSelected
-            ? MediaQuery.of(context).size.height
-            : 150,
+        margin: EdgeInsets.all(5),
+        constraints: BoxConstraints(
+          minHeight: isSelected
+            ? MediaQuery.of(context).size.height/8
+            : 90,
+        ),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
         border: Border.all(color: const Color(0xFF4EABC7)),
@@ -78,10 +84,10 @@ class _ContactPage extends State<ContactsPage>{
               spacing: 3,
               children: [
                 Align(alignment: AlignmentGeometry.centerLeft, child: icon),
-                Text(key, textDirection: TextDirection.ltr, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), overflow: TextOverflow.visible,)
+                Text(key, textDirection: TextDirection.ltr, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))
               ],
             ),
-            Text('Контактные данные: $value', textDirection: TextDirection.ltr, style: TextStyle(fontSize: 17))
+            Text('Контактные данные: $value', textDirection: TextDirection.ltr, style: TextStyle(fontSize: 17), maxLines: isSelected ? 3 : 1)
             ],
           ),
         ),
@@ -92,13 +98,14 @@ class _ContactPage extends State<ContactsPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Контакты', textDirection: TextDirection.ltr)),
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           ListView.builder(
               itemCount: contacts.length,
               itemBuilder: (context, index) => contactBuild(index)
           ),
+          CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
         ],
       )
     );
