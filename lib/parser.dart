@@ -88,4 +88,21 @@ class Parser {
     }
     return contacts;
   }
+
+  Future<Map<String, dynamic>> getDirectorWords() async{
+    Map<String, dynamic> menu = {};
+    final response = await http.get(Uri.parse(siteUrl));
+    if (response.statusCode != 200){
+      throw Exception('Ошибка при получении меню о школе: ${response.statusCode}');
+    }
+    final document = parser.parse(response.body);
+    final wordsDivs = document.querySelector('base-modal__wrap modal fade');
+    final titleDiv = wordsDivs?.querySelector('h5')?.text ?? '';
+    menu.addAll({'heading' : titleDiv});
+    final textDiv = wordsDivs?.querySelector('p.base-modal__text')?.innerHtml ?? '';
+    menu.addAll({'text' : textDiv});
+    final imgDivs = document.querySelector('div.col-lg-6 img.offer-slide-base-bg')?.attributes['src'] ?? '';
+    menu.addAll({'image_URl' : siteUrl + imgDivs});
+    return menu;
+  }
 }

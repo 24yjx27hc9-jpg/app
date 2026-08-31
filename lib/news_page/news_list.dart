@@ -36,6 +36,34 @@ class _NewsList extends State<NewsList>{
     }
   }
 
+  Widget newsCardGen(Map<String, String> item, String? imageUrl) {
+    return NewsCard(
+        heading: item['name'] ?? '',
+        anonsText: item['anons_text'] ?? '',
+        onTap: () {
+          Navigator.pushNamed(context, '/news_page/page', arguments: item['url']);
+        },
+        image: imageUrl!.isEmpty
+            ? const ColoredBox(
+          color: Colors.grey,
+          child: Icon(Icons.image_not_supported),
+        )
+            : ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return const ColoredBox(
+                color: Colors.grey,
+                child: Icon(Icons.broken_image),
+              );
+            },
+          ),
+        )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,34 +75,17 @@ class _NewsList extends State<NewsList>{
             itemBuilder: (context, index) {
               final item = news[index];
               final imageUrl = item['image'];
-              return NewsCard(
-                  heading: item['name'] ?? '',
-                  anonsText: item['anons_text'] ?? '',
-                  onTap: () {
-                    Navigator.pushNamed(context, '/news_page/page', arguments: item['url']);
-                  },
-                  image: imageUrl!.isEmpty
-                      ? const ColoredBox(
-                    color: Colors.grey,
-                    child: Icon(Icons.image_not_supported),
-                  )
-                      : ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const ColoredBox(
-                          color: Colors.grey,
-                          child: Icon(Icons.broken_image),
-                        );
-                      },
-                    ),
-                  )
-              );
+              if (index == 0){
+                return Padding(
+                    padding: EdgeInsets.only(top: 60),
+                child: newsCardGen(item, imageUrl));
+              }
+              else{
+                return newsCardGen(item, imageUrl);
+              }
             },
           ),
-          CustomAppBar(titleText: 'Новости', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+          CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
         ],
       )
     );

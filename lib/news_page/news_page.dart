@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_notes/custom_app_bar.dart';
 
 class NewsPage extends StatefulWidget{
   const NewsPage({super.key});
@@ -38,7 +39,9 @@ class _NewsPage extends State<NewsPage>{
           child: Image.network(mainImageUrl))
     );
     final mainImage = mainImageUrl.isEmpty ? const ColoredBox(color: Colors.grey, child: Icon(Icons.image_not_supported_rounded)) : image;
-    return mainImage;
+    return Padding(
+        padding: EdgeInsets.only(top: 85),
+    child: mainImage,);
   }
 
   Future<void> galleryViewer(int index, List<dynamic> imagesList) async{
@@ -147,8 +150,13 @@ class _NewsPage extends State<NewsPage>{
       );
     }
     return Scaffold(
-      appBar: AppBar(title: Text(news['heading'], textDirection: TextDirection.ltr)),
-      body: newsContent()
+      extendBodyBehindAppBar: true,
+      body: Stack(
+        children: [
+          newsContent(),
+          CustomAppBar(titleText: news['heading'], chapterText: 'Новости', onPrevious: () {Navigator.pushNamed(context, '/news_page');})
+        ],
+      )
     );
   }
 }
