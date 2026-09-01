@@ -61,7 +61,7 @@ class CustomAppBar extends StatelessWidget{
   Widget build(BuildContext context) {
     final topPadding = MediaQuery.of(context).padding.top;
     return SizedBox(
-      height: topPadding + 54,
+      height: topPadding + 74,
       child: Stack(
         children: [
           Positioned.fill(
@@ -72,11 +72,11 @@ class CustomAppBar extends StatelessWidget{
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.lightBlue.withValues(alpha: 0.95),
-                      Colors.lightBlue.withValues(alpha: 0.80),
+                      Colors.lightBlue.withValues(alpha: 1.00),
+                      Colors.lightBlue.withValues(alpha: 0.90),
                       Colors.lightBlue.withValues(alpha: 0.70),
-                      Colors.lightBlue.withValues(alpha: 0.60),
-                      Colors.lightBlue.withValues(alpha: 0.40),
+                      Colors.lightBlue.withValues(alpha: 0.50),
+                      Colors.lightBlue.withValues(alpha: 0.30),
                       Colors.transparent,
                     ],
                     stops: const [

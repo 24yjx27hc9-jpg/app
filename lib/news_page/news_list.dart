@@ -77,7 +77,7 @@ class _NewsList extends State<NewsList>{
               final imageUrl = item['image'];
               if (index == 0){
                 return Padding(
-                    padding: EdgeInsets.only(top: 60),
+                    padding: EdgeInsets.only(top: 70),
                 child: newsCardGen(item, imageUrl));
               }
               else{

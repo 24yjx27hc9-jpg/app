@@ -40,7 +40,7 @@ class _NewsPage extends State<NewsPage>{
     );
     final mainImage = mainImageUrl.isEmpty ? const ColoredBox(color: Colors.grey, child: Icon(Icons.image_not_supported_rounded)) : image;
     return Padding(
-        padding: EdgeInsets.only(top: 85),
+        padding: EdgeInsets.only(top: 100),
     child: mainImage,);
   }
 

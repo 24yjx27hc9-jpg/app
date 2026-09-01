@@ -96,13 +96,19 @@ class Parser {
       throw Exception('Ошибка при получении меню о школе: ${response.statusCode}');
     }
     final document = parser.parse(response.body);
-    final wordsDivs = document.querySelector('base-modal__wrap modal fade');
-    final titleDiv = wordsDivs?.querySelector('h5')?.text ?? '';
-    menu.addAll({'heading' : titleDiv});
-    final textDiv = wordsDivs?.querySelector('p.base-modal__text')?.innerHtml ?? '';
-    menu.addAll({'text' : textDiv});
-    final imgDivs = document.querySelector('div.col-lg-6 img.offer-slide-base-bg')?.attributes['src'] ?? '';
-    menu.addAll({'image_URl' : siteUrl + imgDivs});
+    final offerSection = document.querySelectorAll('section.offer div.offer-slide');
+    for (Element offerDivs in offerSection){
+      final stick = offerDivs.querySelector('.offer-stick')?.text.trim();
+      if (stick == 'Приветственное слово директора'){
+        final text = offerDivs.querySelector('.offer-text.offer-text__range-words')?.innerHtml;
+        final imgURL = offerDivs.querySelector('img.offer-slide-base-bg')?.attributes['src'];
+        menu.addAll({
+          'heading' : stick,
+          'text' : text,
+          'image_URL' : siteUrl + imgURL!
+        });
+      }
+    }
     return menu;
   }
 }

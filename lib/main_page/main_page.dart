@@ -18,10 +18,12 @@ class _MainPage extends State<MainPage>{
     extendBodyBehindAppBar: true,
     body: Stack(
       children: [
-        Padding(
-            padding: EdgeInsets.only(top: 60),
-        child:
-        ButtonMenu()),
+        Column(
+          children: [
+            Padding(padding: EdgeInsets.only(top: 50), child: DirectorWords()),
+            ButtonMenu()
+          ],
+        ),
         CustomAppBar(titleText: 'Главное меню', chapterText: 'СОШ №9')
       ],
     )

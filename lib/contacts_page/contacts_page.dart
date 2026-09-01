@@ -102,7 +102,7 @@ class _ContactPage extends State<ContactsPage>{
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 60),
+            padding: EdgeInsets.only(top: 70),
             child: ListView.builder(
                 itemCount: contacts.length,
                 itemBuilder: (context, index) => contactBuild(index)

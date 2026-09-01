@@ -52,13 +52,34 @@ class _ButtonMenu extends State<ButtonMenu>{
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        itemCount: buttonsInfo.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisExtent: 70),
-        itemBuilder: (context, index) {
-          return button(index);
-        });
+    return Padding(
+      padding: EdgeInsets.only(top: 30),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: 5),
+            child: Align(
+              alignment: AlignmentGeometry.bottomLeft,
+              child: Text(
+                'Информация',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ),
+          ),
+          GridView.builder(
+            padding: EdgeInsets.zero,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: buttonsInfo.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisExtent: 70),
+              itemBuilder: (context, index) {
+                return button(index);
+              }
+          )
+        ],
+      ),
+    );
   }
 }
