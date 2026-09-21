@@ -76,15 +76,13 @@ class CustomAppBar extends StatelessWidget{
                       Colors.lightBlue.withValues(alpha: 0.90),
                       Colors.lightBlue.withValues(alpha: 0.70),
                       Colors.lightBlue.withValues(alpha: 0.50),
-                      Colors.lightBlue.withValues(alpha: 0.30),
-                      Colors.transparent,
+                      Colors.lightBlue.withValues(alpha: 0),
                     ],
                     stops: const [
                       0.0,
                       0.20,
                       0.40,
-                      0.60,
-                      0.80,
+                      0.70,
                       1
                     ],
                   ),

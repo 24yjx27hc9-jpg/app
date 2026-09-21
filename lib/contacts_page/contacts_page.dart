@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/parser.dart';
 import 'package:flutter_notes/custom_app_bar.dart';
+import 'package:flutter_notes/error_handler.dart';
 
 class ContactsPage extends StatefulWidget{
   const ContactsPage({super.key});
@@ -97,6 +98,42 @@ class _ContactPage extends State<ContactsPage>{
 
   @override
   Widget build(BuildContext context) {
+    if (contacts.isEmpty){
+      return Scaffold(
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            Center(
+              child: CircularProgressIndicator(),
+            ),
+            CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+          ],
+        )
+      );
+    }
+    if(contacts[0]['error_code'] != '200' && contacts[0].keys.first == 'error_code'){
+      return Scaffold(
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 110),
+              child: Container(
+                height: 85,
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.redAccent),
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                child: 
+                ErrorHandler(errorCode: contacts[0]['error_code']!),
+              ),
+            ),
+            CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+          ],
+        ),
+      );
+    }
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Stack(

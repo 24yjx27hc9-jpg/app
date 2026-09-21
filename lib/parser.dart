@@ -8,13 +8,13 @@ class Parser {
   Parser({required this.siteUrl});
 
   Future<List<Map<String, String>>> fetchNewsList(String url) async{
+    List<Map<String, String>> news = [];
     final response = await http.get(Uri.parse(url));
     if (response.statusCode != 200){
-      throw Exception('Произошла ошибка при отпраке запроса на сайт: ${response.statusCode}');
+      news.add({'error_code' : '${response.statusCode}'});
     }
     final document = parser.parse(response.body);
     final List elements = document.querySelectorAll('div.events-card');
-    List<Map<String, String>> news = [];
     for (Element element in elements){
       String newsName = element.querySelector('h3')?.text ?? '';
       String newsAnonsText = element.querySelector('p')?.text ?? '';
@@ -30,7 +30,8 @@ class Parser {
         'name' : newsName,
         'anons_text' : newsAnonsText,
         'image' : newsImg,
-        'url' : newsUrl
+        'url' : newsUrl,
+        'error_code' : '200'
       });
     }
     return news;
@@ -63,12 +64,12 @@ class Parser {
   }
 
   Future<List<Map<String, String>>> getContacts(String url) async{
+    List<Map<String, String>> contacts = [];
     final response = await http.get(Uri.parse(url));
     if (response.statusCode != 200){
-      throw Exception('При запросе для нахождения контактов произошла ошибка: ${response.body}');
+      contacts.add({'error_code' : '${response.statusCode}'});
     }
     final document = parser.parse(response.body);
-    List<Map<String, String>> contacts = [];
     final contactsList = document.querySelectorAll('.col-lg-6.flex-column .footer-info .reset_ul_ol li');
     for (Element contactElement in contactsList){
       if (contactElement.querySelector('a') != null){
@@ -93,7 +94,8 @@ class Parser {
     Map<String, dynamic> menu = {};
     final response = await http.get(Uri.parse(siteUrl));
     if (response.statusCode != 200){
-      throw Exception('Ошибка при получении меню о школе: ${response.statusCode}');
+      menu.addAll({'error_code' : '${response.statusCode}'});
+      return menu;
     }
     final document = parser.parse(response.body);
     final offerSection = document.querySelectorAll('section.offer div.offer-slide');
@@ -105,7 +107,8 @@ class Parser {
         menu.addAll({
           'heading' : stick,
           'text' : text,
-          'image_URL' : siteUrl + imgURL!
+          'image_URL' : siteUrl + imgURL!,
+          'error_code' : null
         });
       }
     }

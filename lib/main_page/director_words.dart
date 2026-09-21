@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_notes/parser.dart';
+import 'package:flutter_notes/error_handler.dart';
 
 class DirectorWords extends StatefulWidget{
   const DirectorWords({super.key});
@@ -11,9 +12,8 @@ class DirectorWords extends StatefulWidget{
 }
 
 class _DirectorWords extends State<DirectorWords>{
-  final parser = Parser(siteUrl: 'https://t67018w.sch.obrazovanie33.ru');
+  final Parser parser = Parser(siteUrl: 'https://t67018w.sch.obrazovanie33.ru');
   Map<String, dynamic> elements = {};
-  bool isFullOpen = false;
   
   @override
   void initState() {
@@ -37,7 +37,23 @@ class _DirectorWords extends State<DirectorWords>{
   @override
   Widget build(BuildContext context) {
     if(elements.isEmpty){
-      return CircularProgressIndicator();
+      return Align(alignment: Alignment.bottomCenter,
+      child: CircularProgressIndicator());
+    }
+    if (elements['error_code'] != null){
+      return Padding(
+        padding: EdgeInsets.only(top: 60),
+        child: Container(
+          margin: EdgeInsets.all(10),
+          height: 85,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.redAccent),
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child:
+          Center(child: ErrorHandler(errorCode: elements['error_code']),),
+        ),
+      );
     }
     return Padding(
       padding: EdgeInsets.only(top: 60),
@@ -56,7 +72,35 @@ class _DirectorWords extends State<DirectorWords>{
           Container(
             height: 250,
             decoration: BoxDecoration(
-                color: Colors.blueGrey),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.blueGrey.withValues(alpha: 1),
+                    Colors.blueGrey.withValues(alpha: 0.9),
+                    Colors.blueGrey.withValues(alpha: 0.8),
+                    Colors.blueGrey.withValues(alpha: 0.7),
+                    Colors.blueGrey.withValues(alpha: 0.6),
+                    Colors.blueGrey.withValues(alpha: 0.5),
+                    Colors.blueGrey.withValues(alpha: 0.6),
+                    Colors.blueGrey.withValues(alpha: 0.7),
+                    Colors.blueGrey.withValues(alpha: 0.85),
+                    Colors.blueGrey.withValues(alpha: 1),
+                  ],
+                  stops: const[
+                    0,
+                    0.10,
+                    0.20,
+                    0.30,
+                    0.40,
+                    0.50,
+                    0.60,
+                    0.70,
+                    0.85,
+                    1
+                  ]
+                )
+            ),
             child: Row(
               spacing: 10,
               children: [

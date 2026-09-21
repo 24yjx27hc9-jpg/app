@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_notes/parser.dart';
 import 'news_card.dart';
 import 'package:flutter_notes/custom_app_bar.dart';
+import 'package:flutter_notes/error_handler.dart';
 
 class NewsList extends StatefulWidget{
   const NewsList({super.key});
@@ -66,6 +67,37 @@ class _NewsList extends State<NewsList>{
 
   @override
   Widget build(BuildContext context) {
+    if(news.isEmpty){
+      return Scaffold(
+        body:
+        Center(
+          child: CircularProgressIndicator(),
+        )
+      );
+    }
+    if (news[0]['error_code'] != '200'){
+      return Scaffold(
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 100),
+              child: Container(
+                height: 85,
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.redAccent),
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                child:
+                ErrorHandler(errorCode: news[0]['error_code']!),
+              )
+            ),
+            CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+          ],
+        ),
+      );
+    }
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Stack(
