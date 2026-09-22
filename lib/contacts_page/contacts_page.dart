@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notes/parser.dart';
-import 'package:flutter_notes/custom_app_bar.dart';
+import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
 import 'package:flutter_notes/error_handler.dart';
 
 class ContactsPage extends StatefulWidget{
@@ -118,16 +118,7 @@ class _ContactPage extends State<ContactsPage>{
           children: [
             Padding(
               padding: EdgeInsets.only(top: 110),
-              child: Container(
-                height: 85,
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.redAccent),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: 
-                ErrorHandler(errorCode: contacts[0]['error_code']!),
-              ),
+              child: ErrorHandler(errorCode: contacts[0]['error_code']!),
             ),
             CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
           ],

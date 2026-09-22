@@ -43,16 +43,8 @@ class _DirectorWords extends State<DirectorWords>{
     if (elements['error_code'] != null){
       return Padding(
         padding: EdgeInsets.only(top: 60),
-        child: Container(
-          margin: EdgeInsets.all(10),
-          height: 85,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.redAccent),
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child:
-          Center(child: ErrorHandler(errorCode: elements['error_code']),),
-        ),
+        child:
+          ErrorHandler(errorCode: elements['error_code'])
       );
     }
     return Padding(

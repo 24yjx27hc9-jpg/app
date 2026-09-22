@@ -31,7 +31,6 @@ class Parser {
         'anons_text' : newsAnonsText,
         'image' : newsImg,
         'url' : newsUrl,
-        'error_code' : '200'
       });
     }
     return news;

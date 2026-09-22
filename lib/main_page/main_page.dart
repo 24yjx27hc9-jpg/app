@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'button_menu.dart';
-import 'package:flutter_notes/custom_app_bar.dart';
+import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
 import 'director_words.dart';
 
 class MainPage extends StatefulWidget{

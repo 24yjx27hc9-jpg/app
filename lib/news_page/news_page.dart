@@ -4,7 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_notes/custom_app_bar.dart';
+import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
 
 class NewsPage extends StatefulWidget{
   const NewsPage({super.key});
