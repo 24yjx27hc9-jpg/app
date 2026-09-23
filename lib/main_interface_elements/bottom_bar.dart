@@ -14,15 +14,15 @@ class BottomBar extends StatelessWidget{
         icon = Icons.speaker_notes;
     }
     Widget button = Container(
-      height: 30,
+      height: 70,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10)
       ),
       child: Column(
         spacing: 1,
         children: [
-          Icon(icon),
-          Text(buttonName)
+          Icon(icon, color: Colors.white,),
+          Text(buttonName, style: TextStyle(color: Colors.white, fontSize: 9),)
         ],
       ),
     );
@@ -31,19 +31,27 @@ class BottomBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50,
-      color: Theme.of(context).colorScheme.primary,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10)
-      ),
-      child: Row(
-        spacing: 3,
-        children: [
-          button('main', 'Главная'),
-          button('notes', 'Заметки'),
-          button('settings', 'Настройки')
-        ],
+    return Padding(
+      padding: EdgeInsets.only(bottom: 20),
+      child:  Container(
+        height: 60,
+        width: 210,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Theme.of(context).colorScheme.primary
+        ),
+        child: Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: Row(
+            spacing: 3,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              button('notes', 'Заметки'),
+              button('main', 'Главная'),
+              button('settings', 'Настройки')
+            ],
+          ),
+        )
       ),
     );
   }

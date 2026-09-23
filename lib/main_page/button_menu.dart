@@ -10,7 +10,8 @@ class ButtonMenu extends StatefulWidget{
 class _ButtonMenu extends State<ButtonMenu>{
   final buttonsInfo = [
     ['Новости', '/news_page'],
-    ['Контакты', '/contacts']
+    ['Контакты', '/contacts'],
+    ['TEST PAGE', '/test']
   ];
 
   Widget button(int index){
@@ -20,6 +21,8 @@ class _ButtonMenu extends State<ButtonMenu>{
         icon = Icon(Icons.newspaper_rounded);
       case '/contacts':
         icon = Icon(Icons.call);
+      case '/test':
+        icon = Icon(Icons.developer_mode);
     }
     return Padding(
           padding: EdgeInsetsGeometry.all(3),
