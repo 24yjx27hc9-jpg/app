@@ -146,7 +146,12 @@ class _NewsPage extends State<NewsPage>{
   Widget build(BuildContext context) {
     if(news.isEmpty){
       return Scaffold(
-        body: Center(child: CircularProgressIndicator()),
+        body: Stack(
+          children: [
+            Center(child: CircularProgressIndicator()),
+            CustomAppBar(titleText: 'Загрузка...', chapterText: 'Новости', onPrevious: () {Navigator.pushNamed(context, '/news_page');})
+          ],
+        )
       );
     }
     return Scaffold(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main_interface_elements/custom_app_bar.dart';
 import 'main_interface_elements/bottom_bar.dart';
+import 'error_handler.dart';
 
 class TestPage extends StatefulWidget{
   const TestPage({super.key});
@@ -17,10 +18,9 @@ class _TestPage extends State<TestPage>{
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Align(
-            alignment: AlignmentGeometry.bottomCenter,
-            child: BottomBar(),
-          ),
+          BottomBar(),
+          Padding(padding: EdgeInsets.only(top: 100), child: ErrorHandler(errorCode: '500')),
+          Padding(padding: EdgeInsets.only(top: 300), child: ErrorHandler(errorCode: '403')),
           CustomAppBar(titleText: 'TEST PAGE', chapterText: 'BACK', onPrevious: () {Navigator.pushNamed(context, '/');})
         ],
       ),

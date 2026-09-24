@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'button_menu.dart';
 import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
 import 'director_words.dart';
+import 'package:flutter_notes/main_interface_elements/bottom_bar.dart';
 
 class MainPage extends StatefulWidget{
   const MainPage({super.key});
@@ -18,6 +19,7 @@ class _MainPage extends State<MainPage>{
     extendBodyBehindAppBar: true,
     body: Stack(
       children: [
+        BottomBar(),
         Column(
           children: [
             Padding(padding: EdgeInsets.only(top: 50), child: DirectorWords()),
