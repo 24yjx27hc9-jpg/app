@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_notes/parser.dart';
 import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
 import 'package:flutter_notes/error_handler.dart';
+import 'package:flutter_notes/main_interface_elements/bottom_bar.dart';
 
 class ContactsPage extends StatefulWidget{
   const ContactsPage({super.key});
@@ -82,13 +83,14 @@ class _ContactPage extends State<ContactsPage>{
           child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               spacing: 3,
               children: [
-                Align(alignment: AlignmentGeometry.centerLeft, child: icon),
-                Text(key, textDirection: TextDirection.ltr, style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold))
+                icon,
+                Text(key, style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.black))
               ],
             ),
-            Text('Контактные данные: $value', textDirection: TextDirection.ltr, style: TextStyle(fontSize: 17), maxLines: isSelected ? 3 : 1)
+            Text('Контактные данные: $value', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black), maxLines: isSelected ? 3 : 1)
             ],
           ),
         ),
@@ -103,6 +105,7 @@ class _ContactPage extends State<ContactsPage>{
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
+            BottomBar(),
             Center(
               child: CircularProgressIndicator(),
             ),
@@ -116,6 +119,7 @@ class _ContactPage extends State<ContactsPage>{
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
+            BottomBar(),
             Padding(
               padding: EdgeInsets.only(top: 110),
               child: ErrorHandler(errorCode: contacts[0]['error_code']!),
@@ -129,6 +133,7 @@ class _ContactPage extends State<ContactsPage>{
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
+          BottomBar(),
           Padding(
             padding: EdgeInsets.only(top: 70),
             child: ListView.builder(

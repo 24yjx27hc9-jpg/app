@@ -3,6 +3,7 @@ import 'package:flutter_notes/parser.dart';
 import 'news_card.dart';
 import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
 import 'package:flutter_notes/error_handler.dart';
+import 'package:flutter_notes/main_interface_elements/bottom_bar.dart';
 
 class NewsList extends StatefulWidget{
   const NewsList({super.key});
@@ -74,7 +75,14 @@ class _NewsList extends State<NewsList>{
           Stack(
             children: [
               Center(
-                child: CircularProgressIndicator(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 5,
+                  children: [
+                    CircularProgressIndicator(),
+                    Text('К сожалению\nс этим разделом могут возникнуть трудности\nЕсли прошла уже минута - попробуйте перезайти в новости.\nСкоро это будет исправлено', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black), textAlign: TextAlign.center,)
+                  ],
+                ),
               ),
               CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
             ],

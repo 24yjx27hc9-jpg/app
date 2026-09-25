@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_notes/main_interface_elements/custom_app_bar.dart';
+import 'package:flutter_notes/main_interface_elements/bottom_bar.dart';
 
 class NewsPage extends StatefulWidget{
   const NewsPage({super.key});
@@ -101,6 +102,8 @@ class _NewsPage extends State<NewsPage>{
   }
 
   Widget newsContent() {
+    final theme = Theme.of(context);
+    final textStyle = theme.textTheme.bodyMedium;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -110,6 +113,15 @@ class _NewsPage extends State<NewsPage>{
             padding: EdgeInsets.only(top: 10, bottom: 25),
             child: Html(
               data: news['text'],
+              style: {'*' : Style(
+            color: Colors.black,
+            fontFamily: textStyle?.fontFamily,
+            fontWeight: textStyle?.fontWeight,
+            fontSize: FontSize(textStyle?.fontSize ?? 16),
+            lineHeight: textStyle?.fontSize != null
+            ? LineHeight(textStyle!.height!)
+                : null
+            )},
               onLinkTap: (url, element, attributes) async{
                 if (url?.startsWith('http') ?? false){
                   await launchUrl(
@@ -123,14 +135,10 @@ class _NewsPage extends State<NewsPage>{
           Padding(
               padding: EdgeInsetsGeometry.only(bottom: 5),
             child: Align(alignment: AlignmentGeometry.centerLeft,
-            child: const Text(
+            child: Text(
               'Фотографии',
-              textDirection: TextDirection.ltr,
               textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 25,
-                fontWeight: FontWeight.bold
-              ),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.black),
             ),)
           ),
           SizedBox(

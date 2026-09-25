@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget{
-  static String isSelected = 'main';
+  static String isSelected = 'Главная';
   const BottomBar({super.key});
 
   void selectedPage(BuildContext context){
     final page = ModalRoute.of(context)?.settings.name;
     switch(page){
       case '/settings':
-        isSelected = 'settings';
+        isSelected = 'Настройки';
       case '/notes':
-        isSelected = '/notes';
+        isSelected = 'Заметки';
       default:
-        isSelected = 'main';
+        isSelected = 'Главная';
     }
   }
 
   Widget buttonIcon(String buttonName){
     Widget? icon;
     switch(buttonName){
-      case 'main':
+      case 'Главная':
         icon = Icon(Icons.home_rounded, color: Colors.white);
-      case 'settings':
+      case 'Настройки':
         icon = Icon(Icons.settings_sharp, color: Colors.white);
-      case 'notes':
+      case 'Заметки':
         icon = Icon(Icons.speaker_notes, color: Colors.white);
       default:
         icon = Icon(Icons.question_mark, color: Colors.white);
@@ -31,11 +31,11 @@ class BottomBar extends StatelessWidget{
     return icon;
   }
 
-  Widget button(String buttonName){
+  Widget button(String buttonName, BuildContext context){
     Widget icon = buttonIcon(buttonName);
     Widget button = Container(
       height: 70,
-      width: 70,
+      width: 90,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: isSelected == buttonName ? Colors.white.withValues(alpha: 0.4) : Colors.white.withValues(alpha: 0.15)
@@ -45,7 +45,7 @@ class BottomBar extends StatelessWidget{
         spacing: 1,
         children: [
           icon,
-          Text(buttonName, style: TextStyle(color: Colors.white, fontSize: 12),)
+          Text(buttonName, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600))
         ],
       ),
     );
@@ -61,7 +61,7 @@ class BottomBar extends StatelessWidget{
         padding: EdgeInsets.only(bottom: 20),
         child:  Container(
             height: 70,
-            width: 240,
+            width: 300,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Theme.of(context).colorScheme.primary
@@ -72,9 +72,9 @@ class BottomBar extends StatelessWidget{
                 spacing: 3,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  button('notes'),
-                  button('main'),
-                  button('settings')
+                  button('Заметки', context),
+                  button('Главная', context),
+                  button('Настройки', context)
                 ],
               ),
             )

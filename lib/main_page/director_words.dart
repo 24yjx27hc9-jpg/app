@@ -36,9 +36,14 @@ class _DirectorWords extends State<DirectorWords>{
   
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textStyle = theme.textTheme.bodyMedium;
     if(elements.isEmpty){
-      return Align(alignment: Alignment.bottomCenter,
-      child: CircularProgressIndicator());
+      return Padding(
+        padding: EdgeInsets.only(top: 200),
+        child: Align(alignment: AlignmentGeometry.center,
+            child: CircularProgressIndicator()),
+      );
     }
     if (elements['error_code'] != null){
       return Padding(
@@ -57,7 +62,7 @@ class _DirectorWords extends State<DirectorWords>{
               alignment: AlignmentGeometry.centerLeft,
               child: Text(
                 'О школе',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.black),
               ),
             ),
           ),
@@ -101,12 +106,19 @@ class _DirectorWords extends State<DirectorWords>{
                     padding: EdgeInsets.all(10),
                     child: SingleChildScrollView(
                       child: Column(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(elements['heading'], style: Theme.of(context).textTheme.titleMedium, maxLines: 3),
                           Html(data: elements['text'],
-                            style: {'*' : Style(color: Colors.white)},
+                            style: {'*' : Style(
+                              color: textStyle?.color,
+                              fontFamily: textStyle?.fontFamily,
+                              fontWeight: textStyle?.fontWeight,
+                              fontSize: FontSize(textStyle?.fontSize ?? 16),
+                              lineHeight: textStyle?.fontSize != null
+                                ? LineHeight(textStyle!.height!)
+                                : null
+                            )},
                             onLinkTap: (url, element, attributes) async{
                               if (url?.startsWith('http') ?? false){
                                 await launchUrl( Uri.parse(url!),

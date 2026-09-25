@@ -45,7 +45,7 @@ class _ButtonMenu extends State<ButtonMenu>{
                       spacing: 2,
                       children: [
                         icon!,
-                        Text(buttonsInfo[index][0], textDirection: TextDirection.ltr, textAlign: TextAlign.center)
+                        Text(buttonsInfo[index][0], textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.primary))
                       ]
                   )
               )
@@ -65,7 +65,7 @@ class _ButtonMenu extends State<ButtonMenu>{
               alignment: AlignmentGeometry.bottomLeft,
               child: Text(
                 'Информация',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.black),
               ),
             ),
           ),

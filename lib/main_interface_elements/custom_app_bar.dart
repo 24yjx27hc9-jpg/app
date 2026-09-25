@@ -14,14 +14,15 @@ class CustomAppBar extends StatelessWidget{
     if (onPrevious != null){
       return Row(
         spacing: 3,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Center(child: _arrowedButton(context)),
-          Text(chapterText, style: Theme.of(context).textTheme.labelMedium)
+          _arrowedButton(context),
+          Text(chapterText, style: Theme.of(context).textTheme.titleSmall)
         ],
       );
     }
     else{
-      return Text(chapterText, style: Theme.of(context).textTheme.labelMedium);
+      return Text(chapterText, style: Theme.of(context).textTheme.titleSmall, textAlign: TextAlign.center);
     }
   }
 
@@ -48,12 +49,13 @@ class CustomAppBar extends StatelessWidget{
 
   Widget _titlePill(BuildContext context, String text){
     return Container(
+      height: 44,
         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 13),
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary.withValues(alpha: 1),
             borderRadius: BorderRadius.circular(10)),
         child: Text(
-            titleText, style: Theme.of(context).textTheme.labelMedium, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center)
+            titleText, style: Theme.of(context).textTheme.titleSmall, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center)
         );
   }
 

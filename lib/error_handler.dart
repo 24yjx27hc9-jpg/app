@@ -10,7 +10,7 @@ class ErrorHandler extends StatelessWidget{
       case '403':
         return Text('Не удалось получить доступ к сайту школы:(\nЕсли у вас включен VPN - отключите его', style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.red), textAlign: TextAlign.center,);
       case '500':
-        return Text('На сайте школы произошла ошибка при отправке данных', style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.red), textAlign: TextAlign.center,);
+        return Text('На сайте школы произошла ошибка\n при отправке данных', style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.red), textAlign: TextAlign.center,);
       default:
         return Text('Произошла ошибка при запросе\nна сайт школы', style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.red), textAlign: TextAlign.center,);
     }
