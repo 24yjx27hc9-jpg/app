@@ -82,21 +82,21 @@ class _NewsPage extends State<NewsPage>{
       ),
       clipBehavior: Clip.antiAlias,
       child: ListView.builder(
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () => galleryViewer(index, news['full_size_other_img_urls']),
-              child: Container(
-                  margin: EdgeInsets.all(7),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: imageList.isEmpty ? Center(child: CircularProgressIndicator()) : Image.network(imageList[index])
-              ),
-            );
-          },
-          itemCount: imageCount,
-          scrollDirection: Axis.horizontal
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () => galleryViewer(index, news['full_size_other_img_urls']),
+            child: Container(
+                margin: EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: imageList.isEmpty ? Center(child: CircularProgressIndicator()) : Image.network(imageList[index])
+            ),
+          );
+        },
+        itemCount: imageCount,
+        scrollDirection: Axis.horizontal
       ),
     );
   }
@@ -141,9 +141,12 @@ class _NewsPage extends State<NewsPage>{
               style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.black),
             ),)
           ),
-          SizedBox(
-            height: 150,
-            child: gallery()
+          Padding(
+            padding: EdgeInsets.only(bottom: 90),
+            child: SizedBox(
+                height: 150,
+                child: gallery()
+            ),
           )
         ],
       ),
@@ -167,6 +170,7 @@ class _NewsPage extends State<NewsPage>{
       body: Stack(
         children: [
           newsContent(),
+          BottomBar(),
           CustomAppBar(titleText: news['heading'], chapterText: 'Новости', onPrevious: () {Navigator.pushNamed(context, '/news_page');})
         ],
       )

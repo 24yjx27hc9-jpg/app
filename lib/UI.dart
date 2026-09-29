@@ -5,6 +5,8 @@ import 'main_page/main_page.dart';
 import 'contacts_page/contacts_page.dart';
 import 'theme/theme.dart';
 import 'test_page.dart';
+import 'notes_page/notes_page.dart';
+import 'settings_page/settings_page.dart';
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -23,7 +25,9 @@ class _MyApp extends State<MyApp>{
         '/news_page' : (context) => const NewsList(),
         '/news_page/page' : (context) => const NewsPage(),
         '/contacts' : (context) => const ContactsPage(),
-        '/test' : (context) => TestPage()
+        '/test' : (context) => const TestPage(),
+        '/notes' : (context) => const NotesPage(),
+        '/settings' : (context) => const SettingsPage()
       },
       theme: AppTheme.light,
     );

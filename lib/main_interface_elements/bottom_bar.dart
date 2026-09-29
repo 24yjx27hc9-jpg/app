@@ -16,7 +16,7 @@ class BottomBar extends StatelessWidget{
     }
   }
 
-  Widget buttonIcon(String buttonName){
+Widget buttonIcon(String buttonName){
     Widget? icon;
     switch(buttonName){
       case 'Главная':
@@ -31,13 +31,13 @@ class BottomBar extends StatelessWidget{
     return icon;
   }
 
-  Widget button(String buttonName, BuildContext context){
+  Widget button(String buttonName, String pushName, BuildContext context){
     Widget icon = buttonIcon(buttonName);
     Widget button = Container(
       height: 70,
       width: 90,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(35),
         color: isSelected == buttonName ? Colors.white.withValues(alpha: 0.4) : Colors.white.withValues(alpha: 0.15)
       ),
       child: Column(
@@ -49,6 +49,13 @@ class BottomBar extends StatelessWidget{
         ],
       ),
     );
+    if (isSelected != buttonName){
+      button = GestureDetector(
+        onTap: () => Navigator.pushNamed(context, pushName),
+        child: button,
+      );
+      return button;
+    }
     return button;
   }
 
@@ -63,7 +70,7 @@ class BottomBar extends StatelessWidget{
             height: 70,
             width: 300,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(40),
                 color: Theme.of(context).colorScheme.primary
             ),
             child: Padding(
@@ -72,9 +79,9 @@ class BottomBar extends StatelessWidget{
                 spacing: 3,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  button('Заметки', context),
-                  button('Главная', context),
-                  button('Настройки', context)
+                  button('Заметки', '/notes', context),
+                  button('Главная', '/', context),
+                  button('Настройки', '/settings', context)
                 ],
               ),
             )

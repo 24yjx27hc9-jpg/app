@@ -133,7 +133,6 @@ class _ContactPage extends State<ContactsPage>{
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          BottomBar(),
           Padding(
             padding: EdgeInsets.only(top: 70),
             child: ListView.builder(
@@ -141,6 +140,7 @@ class _ContactPage extends State<ContactsPage>{
                 itemBuilder: (context, index) => contactBuild(index)
             )
           ),
+          BottomBar(),
           CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
         ],
       )

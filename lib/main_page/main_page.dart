@@ -19,13 +19,13 @@ class _MainPage extends State<MainPage>{
     extendBodyBehindAppBar: true,
     body: Stack(
       children: [
-        BottomBar(),
         Column(
           children: [
             Padding(padding: EdgeInsets.only(top: 50), child: DirectorWords()),
             ButtonMenu()
           ],
         ),
+        BottomBar(),
         CustomAppBar(titleText: 'Главное меню', chapterText: 'СОШ №9')
       ],
     )
