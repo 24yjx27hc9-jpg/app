@@ -21,7 +21,7 @@ class _TestPage extends State<TestPage>{
           BottomBar(),
           Padding(padding: EdgeInsets.only(top: 100), child: ErrorHandler(errorCode: '500')),
           Padding(padding: EdgeInsets.only(top: 300), child: ErrorHandler(errorCode: '403')),
-          CustomAppBar(titleText: 'TEST PAGE', chapterText: 'BACK', onPrevious: () {Navigator.pushNamed(context, '/');})
+          CustomAppBar(titleText: 'TEST PAGE', chapterText: 'BACK')
         ],
       ),
     );

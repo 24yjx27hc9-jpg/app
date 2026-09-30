@@ -160,7 +160,7 @@ class _NewsPage extends State<NewsPage>{
         body: Stack(
           children: [
             Center(child: CircularProgressIndicator()),
-            CustomAppBar(titleText: 'Загрузка...', chapterText: 'Новости', onPrevious: () {Navigator.pushNamed(context, '/news_page');})
+            CustomAppBar(titleText: 'Загрузка...', chapterText: 'Новости')
           ],
         )
       );
@@ -171,7 +171,7 @@ class _NewsPage extends State<NewsPage>{
         children: [
           newsContent(),
           BottomBar(),
-          CustomAppBar(titleText: news['heading'], chapterText: 'Новости', onPrevious: () {Navigator.pushNamed(context, '/news_page');})
+          CustomAppBar(titleText: news['heading'], chapterText: 'Новости')
         ],
       )
     );

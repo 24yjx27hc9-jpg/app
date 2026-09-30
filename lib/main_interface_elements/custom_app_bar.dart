@@ -3,30 +3,33 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget{
   final String chapterText;
   final String titleText;
-  final VoidCallback? onPrevious;
-  const CustomAppBar({super.key, required this.titleText, required this.chapterText, this.onPrevious});
+  const CustomAppBar({super.key, required this.titleText, required this.chapterText});
   
   Widget _arrowedButton(BuildContext context, {IconData icon = Icons.arrow_back_ios_new_rounded}){
     return Icon(icon, size: 18, color: Colors.white);
   }
 
   Widget _checkArrow(BuildContext context) {
-    if (onPrevious != null){
-      return Row(
-        spacing: 3,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _arrowedButton(context),
-          Text(chapterText, style: Theme.of(context).textTheme.titleSmall)
-        ],
-      );
-    }
-    else{
-      return Text(chapterText, style: Theme.of(context).textTheme.titleSmall, textAlign: TextAlign.center);
+    String? page = ModalRoute.of(context)?.settings.name;
+    switch(page){
+      case '/':
+      case '/notes':
+      case '/settings':
+        return Text(chapterText, style: Theme.of(context).textTheme.titleSmall, textAlign: TextAlign.center);
+      default:
+        return Row(
+          spacing: 3,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _arrowedButton(context),
+            Text(chapterText, style: Theme.of(context).textTheme.titleSmall)
+          ],
+        );
     }
   }
 
-  Widget _chapterPill(BuildContext context, String text, VoidCallback? onPressed){
+  Widget _chapterPill(BuildContext context, String text){
+    String? page = ModalRoute.of(context)?.settings.name;
     Widget chapterPill = Container(
         height: 44,
         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 13),
@@ -36,14 +39,16 @@ class CustomAppBar extends StatelessWidget{
         ),
         child: _checkArrow(context)
     );
-    if (onPrevious != null){
-      return GestureDetector(
-        onTap: onPressed,
-        child: chapterPill,
-      );
-    }
-    else{
-      return chapterPill;
+    switch(page){
+      case '/':
+      case '/notes':
+      case '/settings':
+        return chapterPill;
+      default:
+        return GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: chapterPill,
+        );
     }
   }
 
@@ -101,7 +106,7 @@ class CustomAppBar extends StatelessWidget{
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _chapterPill(context, chapterText, onPrevious),
+                _chapterPill(context, chapterText),
                 Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(left: 20),

@@ -109,7 +109,7 @@ class _ContactPage extends State<ContactsPage>{
             Center(
               child: CircularProgressIndicator(),
             ),
-            CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+            CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9')
           ],
         )
       );
@@ -124,7 +124,7 @@ class _ContactPage extends State<ContactsPage>{
               padding: EdgeInsets.only(top: 110),
               child: ErrorHandler(errorCode: contacts[0]['error_code']!),
             ),
-            CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+            CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9')
           ],
         ),
       );
@@ -141,7 +141,7 @@ class _ContactPage extends State<ContactsPage>{
             )
           ),
           BottomBar(),
-          CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+          CustomAppBar(titleText: 'Контакты', chapterText: 'СОШ №9')
         ],
       )
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_notes/database/database_class.dart';
 
 class AddNoteDialog extends StatefulWidget{
   const AddNoteDialog({super.key});
@@ -57,7 +58,12 @@ class _AddNoteDialog extends State<AddNoteDialog>{
                     child: Text('Отмена', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
                   ),
                   TextButton(
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () async{
+                      final db = await DatabaseClass().database;
+                      await db.insert('Notes', {'title' : titleController.text});
+                      if (!context.mounted) return;
+                      Navigator.pop(context);
+                    },
                     style: TextButton.styleFrom(
                         backgroundColor: Colors.green,
                         shape: RoundedRectangleBorder(

@@ -85,7 +85,7 @@ class _NewsList extends State<NewsList>{
                 ),
               ),
               BottomBar(),
-              CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+              CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9')
             ],
           )
       );
@@ -100,7 +100,7 @@ class _NewsList extends State<NewsList>{
               child: ErrorHandler(errorCode: news[0]['error_code']!)
             ),
             BottomBar(),
-            CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+            CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9')
           ],
         ),
       );
@@ -125,7 +125,7 @@ class _NewsList extends State<NewsList>{
             },
           ),
           BottomBar(),
-          CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9', onPrevious: () {Navigator.pushNamed(context, '/');})
+          CustomAppBar(titleText: 'Лента новостей', chapterText: 'СОШ №9')
         ],
       )
     );
