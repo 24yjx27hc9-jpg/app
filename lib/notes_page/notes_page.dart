@@ -72,9 +72,10 @@ class NotesPage extends StatelessWidget{
           body: Stack(
             children: [
               ListView.builder(
+                itemCount: notes.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.only(top: index == 0 ? 80 : 10, bottom: 5, left: 10, right: 10),
                     child: NoteCard(note: notes[index]),
                   );
                 },
@@ -90,7 +91,7 @@ class NotesPage extends StatelessWidget{
                       onPressed: () {
                         showDialog(context: context, builder: (context) => AddNoteDialog());
                       },
-                      icon: Icon(Icons.add, color: Colors.white,)
+                      icon: Icon(Icons.add, color: Colors.white, size: 30,)
                   ),
                 ),
               ),

@@ -7,6 +7,7 @@ import 'theme/theme.dart';
 import 'test_page.dart';
 import 'notes_page/notes_page.dart';
 import 'settings_page/settings_page.dart';
+import 'notes_page/note_page.dart';
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -21,12 +22,13 @@ class _MyApp extends State<MyApp>{
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/' : (context) => const  MainPage(),
+        '/' : (context) => const MainPage(),
         '/news_page' : (context) => const NewsList(),
         '/news_page/page' : (context) => const NewsPage(),
         '/contacts' : (context) => const ContactsPage(),
         '/test' : (context) => const TestPage(),
         '/notes' : (context) => const NotesPage(),
+        '/notes/page' : (context) => const NotePage(),
         '/settings' : (context) => const SettingsPage()
       },
       theme: AppTheme.light,

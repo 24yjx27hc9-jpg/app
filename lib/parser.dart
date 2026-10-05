@@ -14,6 +14,11 @@ class Parser {
       news.add({'error_code' : '${response.statusCode}'});
     }
     final document = parser.parse(response.body);
+    final errorElement = document.querySelector('title');
+    if (errorElement?.text == '403 – Доступ запрещен / Forbidden'){
+      news.add({'error_code' : '403'});
+      return news;
+    }
     final List elements = document.querySelectorAll('div.events-card');
     for (Element element in elements){
       String newsName = element.querySelector('h3')?.text ?? '';
@@ -69,6 +74,11 @@ class Parser {
       contacts.add({'error_code' : '${response.statusCode}'});
     }
     final document = parser.parse(response.body);
+    final errorElement = document.querySelector('title');
+    if (errorElement?.text == '403 – Доступ запрещен / Forbidden'){
+      contacts.add({'error_code' : '403'});
+      return contacts;
+    }
     final contactsList = document.querySelectorAll('.col-lg-6.flex-column .footer-info .reset_ul_ol li');
     for (Element contactElement in contactsList){
       if (contactElement.querySelector('a') != null){
@@ -97,6 +107,11 @@ class Parser {
       return menu;
     }
     final document = parser.parse(response.body);
+    final errorElement = document.querySelector('title');
+    if (errorElement?.text == '403 – Доступ запрещен / Forbidden'){
+      menu.addAll({'error_code' : '403'});
+      return menu;
+    }
     final offerSection = document.querySelectorAll('section.offer div.offer-slide');
     for (Element offerDivs in offerSection){
       final stick = offerDivs.querySelector('.offer-stick')?.text.trim();
