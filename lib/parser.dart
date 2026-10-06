@@ -99,26 +99,37 @@ class Parser {
     return contacts;
   }
 
-  Future<Map<String, dynamic>> getDirectorWords() async{
-    Map<String, dynamic> menu = {};
+  Future<Map<String, Map<String, dynamic>>> getCarousel() async{
+    Map<String, Map<String, dynamic>> carousel = {};
     final response = await http.get(Uri.parse(siteUrl));
     if (response.statusCode != 200){
-      menu.addAll({'error_code' : '${response.statusCode}'});
-      return menu;
+      carousel.addAll({
+        'error' : {'error_code' : '${response.statusCode}'}
+      });
+      return carousel;
     }
     final document = parser.parse(response.body);
-    final errorElement = document.querySelector('title');
-    if (errorElement?.text == '403 – Доступ запрещен / Forbidden'){
-      menu.addAll({'error_code' : '403'});
-      return menu;
+    final errorElement = document.querySelector('title') ?? '';
+    if (errorElement == '403 – Доступ запрещен / Forbidden'){
+      carousel.addAll({
+        'error' : {'error_code' : '403'}
+      });
     }
+    Map<String, dynamic> startPage = {};
+    final startDiv = document.querySelector('div.row.gx-5.gy-4.align-items-center');
+    final check = startDiv?.querySelector('p.offer-text.offer-text_large.offer-text__two-lines');
+    if (check != null){
+      final image = startDiv?.querySelector('div.col.lg-6 img')?.attributes['src'];
+      startPage.addAll({'image_URL' : siteUrl + image!});
+    }
+    Map<String, dynamic> directorWords = {};
     final offerSection = document.querySelectorAll('section.offer div.offer-slide');
     for (Element offerDivs in offerSection){
       final stick = offerDivs.querySelector('.offer-stick')?.text.trim();
       if (stick == 'Приветственное слово директора'){
         final text = offerDivs.querySelector('.offer-text.offer-text__range-words')?.innerHtml;
         final imgURL = offerDivs.querySelector('img.offer-slide-base-bg')?.attributes['src'];
-        menu.addAll({
+        directorWords.addAll({
           'heading' : stick,
           'text' : text,
           'image_URL' : siteUrl + imgURL!,
@@ -126,6 +137,19 @@ class Parser {
         });
       }
     }
-    return menu;
+    Map<String, dynamic> aboutSchool = {};
+    final aboutSchoolDiv = document.querySelector('p.offer-text.offer-text__range-words2.text-justify');
+    aboutSchool.addAll({
+      'text': aboutSchoolDiv?.innerHtml,
+      'STATUS' : '${response.statusCode}',
+      'LENGTH' : '${response.body.length}',
+      'HAS offer-text' : '${response.body.contains('offer-text')}'
+    });
+    carousel.addAll({
+      'start_page' : startPage,
+      'director_words' : directorWords,
+      'about_school' : aboutSchool,
+    });
+    return carousel;
   }
 }
