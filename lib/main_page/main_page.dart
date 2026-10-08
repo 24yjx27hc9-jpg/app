@@ -21,7 +21,7 @@ class _MainPage extends State<MainPage>{
       children: [
         Column(
           children: [
-            Padding(padding: EdgeInsets.only(top: 100), child: SizedBox(height: 280, child: Carousel(),)),
+            Padding(padding: EdgeInsets.only(top: 110), child: SizedBox(height: 280, child: Carousel(),)),
             ButtonMenu()
           ],
         ),

@@ -104,7 +104,7 @@ class Parser {
     final response = await http.get(Uri.parse(siteUrl));
     if (response.statusCode != 200){
       carousel.addAll({
-        'error' : {'error_code' : '${response.statusCode}'}
+        'status_code' : {'status_code' : '${response.statusCode}'}
       });
       return carousel;
     }
@@ -112,8 +112,9 @@ class Parser {
     final errorElement = document.querySelector('title') ?? '';
     if (errorElement == '403 – Доступ запрещен / Forbidden'){
       carousel.addAll({
-        'error' : {'error_code' : '403'}
+        'status_code' : {'status_code' : '403'}
       });
+      return carousel;
     }
     Map<String, dynamic> startPage = {};
     final startDiv = document.querySelector('div.row.gx-5.gy-4.align-items-center');
@@ -140,15 +141,13 @@ class Parser {
     Map<String, dynamic> aboutSchool = {};
     final aboutSchoolDiv = document.querySelector('p.offer-text.offer-text__range-words2.text-justify');
     aboutSchool.addAll({
-      'text': aboutSchoolDiv?.innerHtml,
-      'STATUS' : '${response.statusCode}',
-      'LENGTH' : '${response.body.length}',
-      'HAS offer-text' : '${response.body.contains('offer-text')}'
+      'text': aboutSchoolDiv?.innerHtml
     });
     carousel.addAll({
       'start_page' : startPage,
       'director_words' : directorWords,
       'about_school' : aboutSchool,
+      'status_code' : {'status_code' : '200'}
     });
     return carousel;
   }
