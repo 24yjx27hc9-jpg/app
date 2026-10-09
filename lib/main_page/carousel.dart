@@ -102,8 +102,8 @@ class _Carousel extends State<Carousel>{
                   Text('Качественное образование', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontFamily: 'Manrope', fontWeight: FontWeight.w700)),
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Theme.of(context).colorScheme.tertiaryContainer),
-                        borderRadius: BorderRadius.circular(10)
+                      border: Border.all(color: Theme.of(context).colorScheme.tertiaryContainer),
+                      borderRadius: BorderRadius.circular(10)
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(3),
@@ -152,46 +152,46 @@ class _Carousel extends State<Carousel>{
                     children: [
                       Text(carousel['director_words']!['heading'], style: Theme.of(context).textTheme.titleMedium?.copyWith(fontFamily: 'Manrope', fontWeight: FontWeight.w700), maxLines: 3),
                       Expanded(
-                          child: SingleChildScrollView(
-                            child: Html(data: carousel['director_words']!['text'],
-                              style: {'*' : Style(
-                                  color: textStyle?.color,
-                                  fontFamily: textStyle?.fontFamily,
-                                  fontWeight: textStyle?.fontWeight,
-                                  fontSize: FontSize(textStyle?.fontSize ?? 16),
-                                  lineHeight: textStyle?.fontSize != null
-                                      ? LineHeight(textStyle!.height!)
-                                      : null
-                              )},
-                              onLinkTap: (url, element, attributes) async{
-                                if (url?.startsWith('http') ?? false){
-                                  await launchUrl( Uri.parse(url!),
-                                      mode: LaunchMode.externalApplication );
-                                }
-                              },
-                            ),
-                          )
+                        child: SingleChildScrollView(
+                          child: Html(data: carousel['director_words']!['text'],
+                            style: {'*' : Style(
+                              color: textStyle?.color,
+                              fontFamily: textStyle?.fontFamily,
+                              fontWeight: textStyle?.fontWeight,
+                              fontSize: FontSize(textStyle?.fontSize ?? 16),
+                              lineHeight: textStyle?.fontSize != null
+                                ? LineHeight(textStyle!.height!)
+                                : null
+                            )},
+                            onLinkTap: (url, element, attributes) async{
+                              if (url?.startsWith('http') ?? false){
+                                await launchUrl( Uri.parse(url!),
+                                  mode: LaunchMode.externalApplication );
+                              }
+                            },
+                          ),
+                        )
                       ),
                     ],
                   ),
                 ),
               ),
               Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Align(
-                      alignment: AlignmentGeometry.center,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          carousel['director_words']!['image_URL'],
-                          height: 160,
-                          width: double.infinity,
-                          fit: BoxFit.fill,
-                        ),
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Align(
+                    alignment: AlignmentGeometry.center,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        carousel['director_words']!['image_URL'],
+                        height: 160,
+                        width: double.infinity,
+                        fit: BoxFit.fill,
                       ),
                     ),
-                  )
+                  ),
+                )
               ),
             ],
           ),
@@ -225,18 +225,18 @@ class _Carousel extends State<Carousel>{
             child: SingleChildScrollView(
               child: Html(data: carousel['about_school']?['text'] ?? 'PENIS',
                 style: {'*' : Style(
-                    color: textStyle?.color,
-                    fontFamily: textStyle?.fontFamily,
-                    fontWeight: textStyle?.fontWeight,
-                    fontSize: FontSize(textStyle?.fontSize ?? 16),
-                    lineHeight: textStyle?.fontSize != null
-                        ? LineHeight(textStyle!.height!)
-                        : null
+                  color: textStyle?.color,
+                  fontFamily: textStyle?.fontFamily,
+                  fontWeight: textStyle?.fontWeight,
+                  fontSize: FontSize(textStyle?.fontSize ?? 16),
+                  lineHeight: textStyle?.fontSize != null
+                    ? LineHeight(textStyle!.height!)
+                    : null
                 )},
                 onLinkTap: (url, element, attributes) async{
                   if (url?.startsWith('http') ?? false){
                     await launchUrl( Uri.parse(url!),
-                        mode: LaunchMode.externalApplication );
+                      mode: LaunchMode.externalApplication );
                   }
                 },
               ),

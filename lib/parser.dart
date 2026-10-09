@@ -151,4 +151,17 @@ class Parser {
     });
     return carousel;
   }
+
+  Future<Map<String, String>> getSchoolLogo() async {
+    Map<String, String> logo = {};
+    final response = await http.get(Uri.parse(siteUrl));
+    if (response.statusCode != 200) {
+      logo.addAll({'error': '${response.statusCode}'});
+      return logo;
+    }
+    final document = parser.parse(response.body);
+    final logoURL = document.querySelector('header.header div.container a.school-logo img[alt*=Муниципальное]')?.attributes['src'] ?? '';
+    logo.addAll({'URL' : siteUrl + logoURL});
+    return logo;
+  }
 }
