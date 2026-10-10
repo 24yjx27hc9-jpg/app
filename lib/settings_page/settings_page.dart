@@ -39,17 +39,12 @@ class _SettingsPage extends State<SettingsPage>{
       height: MediaQuery.of(context).size.height/6,
       width: MediaQuery.of(context).size.width/3,
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            blurRadius: 3,
-            offset: Offset(0,0)
-          )
-        ]
+        borderRadius: BorderRadius.circular(10),
+        color: Theme.of(context).colorScheme.onSecondaryContainer,
       ),
-      padding: EdgeInsets.all(3),
+      padding: EdgeInsets.all(5),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10),
         child: Image.network(logo['URL']!)
       ),
     );
