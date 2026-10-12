@@ -39,13 +39,41 @@ class _SettingsPage extends State<SettingsPage>{
       height: MediaQuery.of(context).size.height/6,
       width: MediaQuery.of(context).size.width/3,
       decoration: BoxDecoration(
+        boxShadow: [BoxShadow(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          offset: Offset(0, 0),
+          spreadRadius: 0.5,
+          blurRadius: 10
+        )],
         borderRadius: BorderRadius.circular(10),
-        color: Theme.of(context).colorScheme.onSecondaryContainer,
       ),
       padding: EdgeInsets.all(5),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Image.network(logo['URL']!)
+      ),
+    );
+  }
+
+  Widget button(String name, IconData icon, String namePage, BuildContext context){
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, namePage),
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Theme.of(context).colorScheme.outline)
+        ),
+        margin: EdgeInsets.all(5),
+        child: Row(
+          spacing: 2,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(icon, color: Theme.of(context).colorScheme.onPrimaryContainer,),
+            Text(name, style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.onPrimaryContainer))
+          ],
+        ),
       ),
     );
   }
@@ -69,17 +97,34 @@ class _SettingsPage extends State<SettingsPage>{
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.all(100),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height/4,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  schoolLogo(),
-                  Text('МБОУ СОШ 9', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black))
-                ],
-              ),
+            padding: EdgeInsets.only(top: 100, bottom: 80),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height/4,
+                  width: double.infinity,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      schoolLogo(),
+                      Text('МБОУ СОШ 9', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black)),
+                    ],
+                  ),
+                ),
+                Divider(
+                  thickness: 1,
+                  color: Theme.of(context).colorScheme.outlineVariant,
+                ),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      button('Информация', Icons.info_outline, '/setting/info', context),
+                      button('Темы', Icons.color_lens_outlined, '/', context)
+                    ],
+                  ),
+                )
+              ],
             )
           ),
           BottomBar(),
