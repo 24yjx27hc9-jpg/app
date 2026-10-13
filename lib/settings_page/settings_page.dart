@@ -119,8 +119,8 @@ class _SettingsPage extends State<SettingsPage>{
                 Expanded(
                   child: ListView(
                     children: [
-                      button('Информация', Icons.info_outline, '/setting/info', context),
-                      button('Темы', Icons.color_lens_outlined, '/', context)
+                      button('Информация', Icons.info_outline, '/settings/info', context),
+                      button('Темы', Icons.color_lens_outlined, '/settings/theme', context)
                     ],
                   ),
                 )

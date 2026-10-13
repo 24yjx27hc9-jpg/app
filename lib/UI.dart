@@ -9,6 +9,7 @@ import 'notes_page/notes_page.dart';
 import 'settings_page/settings_page.dart';
 import 'notes_page/note_page.dart';
 import 'settings_page/setting_info_page.dart';
+import 'settings_page/settings_theme_page.dart';
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -31,7 +32,8 @@ class _MyApp extends State<MyApp>{
         '/notes' : (context) => const NotesPage(),
         '/notes/page' : (context) => const NotePage(),
         '/settings' : (context) => const SettingsPage(),
-        '/settings/info' : (context) => const SettingInfoPage()
+        '/settings/info' : (context) => const SettingInfoPage(),
+        '/settings/theme' : (context) => const SettingsThemePage()
       },
       theme: AppTheme.light,
     );

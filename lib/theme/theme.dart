@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData light = ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF4EABC7)),
+    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF4EABC7),
+    brightness: Brightness.light),
     textTheme: TextTheme(
       bodySmall: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontFamily: 'Inter'),
       bodyMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontFamily: 'Inter'),
@@ -18,6 +19,20 @@ class AppTheme {
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: 'Manrope'),
       headlineMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: 'Manrope')
     ),
+  );
+  static ThemeData dark = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF4EABC7),
+    brightness: Brightness.dark),
+    textTheme: TextTheme(
+        bodySmall: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontFamily: 'Inter'),
+        bodyMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontFamily: 'Inter'),
+        labelMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
+        titleSmall: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
+        titleMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
+        titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: 'Manrope'),
+        headlineMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: 'Manrope')
+    )
   );
 
 }
