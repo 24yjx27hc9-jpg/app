@@ -114,7 +114,7 @@ class _NewsPage extends State<NewsPage>{
             child: Html(
               data: news['text'],
               style: {'*' : Style(
-            color: Colors.black,
+            color: textStyle?.color,
             fontFamily: textStyle?.fontFamily,
             fontWeight: textStyle?.fontWeight,
             fontSize: FontSize(textStyle?.fontSize ?? 16),
@@ -138,7 +138,7 @@ class _NewsPage extends State<NewsPage>{
             child: Text(
               'Фотографии',
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.black),
+              style: Theme.of(context).textTheme.titleLarge,
             ),)
           ),
           Padding(

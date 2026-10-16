@@ -80,7 +80,7 @@ class _NewsList extends State<NewsList>{
                   spacing: 5,
                   children: [
                     CircularProgressIndicator(),
-                    Text('К сожалению\nс этим разделом могут возникнуть трудности\nЕсли прошла уже минута - попробуйте перезайти в новости.\nСкоро это будет исправлено', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black), textAlign: TextAlign.center,)
+                    Text('К сожалению\nс этим разделом могут возникнуть трудности\nЕсли прошла уже минута - попробуйте перезайти в новости.\nСкоро это будет исправлено', style: Theme.of(context).textTheme.bodySmall, textAlign: TextAlign.center,)
                   ],
                 ),
               ),

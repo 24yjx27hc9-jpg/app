@@ -99,7 +99,7 @@ class _Carousel extends State<Carousel>{
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Качественное образование', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontFamily: 'Manrope', fontWeight: FontWeight.w700)),
+                  Text('Качественное образование', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontFamily: 'Manrope', fontWeight: FontWeight.w700, color: Colors.white)),
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(color: Theme.of(context).colorScheme.tertiaryContainer),
@@ -136,7 +136,7 @@ class _Carousel extends State<Carousel>{
 
   Widget directorWords() {
     final theme = Theme.of(context);
-    final textStyle = theme.textTheme.bodyMedium;
+    final textStyle = theme.textTheme.bodyMedium?.copyWith(color: Colors.white);
     return Column(
       spacing: 5,
       children: [
@@ -150,7 +150,7 @@ class _Carousel extends State<Carousel>{
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(carousel['director_words']!['heading'], style: Theme.of(context).textTheme.titleMedium?.copyWith(fontFamily: 'Manrope', fontWeight: FontWeight.w700), maxLines: 3),
+                      Text(carousel['director_words']!['heading'], style: Theme.of(context).textTheme.titleMedium?.copyWith(fontFamily: 'Manrope', fontWeight: FontWeight.w700, color: Colors.white), maxLines: 3),
                       Expanded(
                         child: SingleChildScrollView(
                           child: Html(data: carousel['director_words']!['text'],
@@ -212,7 +212,7 @@ class _Carousel extends State<Carousel>{
 
   Widget aboutSchool() {
     final theme = Theme.of(context);
-    final textStyle = theme.textTheme.bodyMedium;
+    final textStyle = theme.textTheme.bodyMedium?.copyWith(color: Colors.white);
     return Padding(
       padding: EdgeInsets.all(15),
       child: Column(
@@ -220,7 +220,7 @@ class _Carousel extends State<Carousel>{
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('О школе', style: Theme.of(context).textTheme.titleMedium),
+          Text('О школе', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white)),
           Expanded(
             child: SingleChildScrollView(
               child: Html(data: carousel['about_school']?['text'] ?? 'PENIS',

@@ -33,7 +33,7 @@ class _AddNoteDialog extends State<AddNoteDialog>{
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Создание заметки', style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.black), textAlign: TextAlign.start),
+              Text('Создание заметки', style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.start),
               TextField(
                 controller: titleController,
                 decoration: InputDecoration(
@@ -55,7 +55,7 @@ class _AddNoteDialog extends State<AddNoteDialog>{
                         borderRadius: BorderRadius.circular(10)
                       )
                     ),
-                    child: Text('Отмена', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
+                    child: Text('Отмена', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600, color: Colors.white)),
                   ),
                   TextButton(
                     onPressed: () async{
@@ -70,7 +70,7 @@ class _AddNoteDialog extends State<AddNoteDialog>{
                             borderRadius: BorderRadius.circular(10)
                         )
                     ),
-                    child: Text('Создать', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
+                    child: Text('Создать', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600, color: Colors.white)),
                   ),
                 ],
               )

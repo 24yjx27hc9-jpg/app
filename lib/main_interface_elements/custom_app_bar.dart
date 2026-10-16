@@ -15,14 +15,14 @@ class CustomAppBar extends StatelessWidget{
       case '/':
       case '/notes':
       case '/settings':
-        return Text(chapterText, style: Theme.of(context).textTheme.titleSmall, textAlign: TextAlign.center);
+        return Text(chapterText, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white), textAlign: TextAlign.center);
       default:
         return Row(
           spacing: 3,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _arrowedButton(context),
-            Text(chapterText, style: Theme.of(context).textTheme.titleSmall)
+            Text(chapterText, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white))
           ],
         );
     }
@@ -57,10 +57,11 @@ class CustomAppBar extends StatelessWidget{
       height: 44,
         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 13),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primary.withValues(alpha: 1),
+            color: Theme.of(context).colorScheme.primary,
+
             borderRadius: BorderRadius.circular(10)),
         child: Text(
-            titleText, style: Theme.of(context).textTheme.titleSmall, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center)
+            titleText, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white), overflow: TextOverflow.ellipsis, textAlign: TextAlign.center)
         );
   }
 

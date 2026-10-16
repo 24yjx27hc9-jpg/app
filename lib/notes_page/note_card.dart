@@ -6,9 +6,9 @@ class NoteCard extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    Widget text = Text('У заметки нет текста', style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w500, color: Colors.black), overflow: TextOverflow.ellipsis,);
+    Widget text = Text('У заметки нет текста', style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w500), overflow: TextOverflow.ellipsis,);
     if (note['text'] != null){
-      text = Text(note['text'].toString(), style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w500, color: Colors.black), overflow: TextOverflow.ellipsis,);
+      text = Text(note['text'].toString(), style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w500), overflow: TextOverflow.ellipsis,);
     }
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, '/notes/page', arguments: note['id']),
@@ -25,7 +25,7 @@ class NoteCard extends StatelessWidget{
           spacing: 3,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(note['title'].toString(), style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.black)),
+            Text(note['title'].toString(), style: Theme.of(context).textTheme.titleLarge),
             text
           ],
         ),

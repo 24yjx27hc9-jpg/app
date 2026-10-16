@@ -11,13 +11,13 @@ class AppTheme {
     colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF4EABC7),
     brightness: Brightness.light),
     textTheme: TextTheme(
-      bodySmall: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontFamily: 'Inter'),
-      bodyMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontFamily: 'Inter'),
-      labelMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
-      titleSmall: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
-      titleMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
-      titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: 'Manrope'),
-      headlineMedium: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontFamily: 'Manrope')
+      bodySmall: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontFamily: 'Inter'),
+      bodyMedium: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontFamily: 'Inter'),
+      labelMedium: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
+      titleSmall: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
+      titleMedium: TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontFamily: 'Inter'),
+      titleLarge: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontFamily: 'Manrope'),
+      headlineMedium: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontFamily: 'Manrope')
     ),
   );
   static ThemeData dark = ThemeData(

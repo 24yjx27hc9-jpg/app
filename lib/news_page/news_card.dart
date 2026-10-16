@@ -34,14 +34,14 @@ class NewsCard extends StatelessWidget{
                   children: [
                     Text(
                       heading,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black)
+                      style: Theme.of(context).textTheme.titleMedium
                     ),
                     const SizedBox(height: 12),
                     Text(
                       anonsText,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.black)
+                      style: Theme.of(context).textTheme.bodySmall
                     ),
                   ],
                 ),

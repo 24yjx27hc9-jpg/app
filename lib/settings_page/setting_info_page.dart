@@ -11,7 +11,7 @@ class SettingInfoPage extends StatelessWidget{
       mainAxisSize: MainAxisSize.max,
       spacing: 3,
       children: [
-        Text('Ссылка на репозиторий Github:', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black)),
+        Text('Ссылка на репозиторий Github:', style: Theme.of(context).textTheme.bodyMedium),
         Expanded(
           child: GestureDetector(
             onTap: () async{
@@ -51,9 +51,9 @@ class SettingInfoPage extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     urlText(context),
-                    Text('Версия: 0.0.1', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),),
-                    Text('Актуальная версия: 0.0.1', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),),
-                    Text('Средства разработки: Dart (язык программирования), Flutter (фреймворк)', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black),)
+                    Text('Версия: 0.0.1', style: Theme.of(context).textTheme.bodyMedium),
+                    Text('Актуальная версия: 0.0.1', style: Theme.of(context).textTheme.bodyMedium),
+                    Text('Средства разработки: Dart (язык программирования), Flutter (фреймворк)', style: Theme.of(context).textTheme.bodyMedium)
                   ],
                 )
               ],

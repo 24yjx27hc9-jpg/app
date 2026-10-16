@@ -42,7 +42,7 @@ class NotesPage extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.question_mark, size: height/6,),
-                  Text('Заметок пока нет...', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500, color: Colors.black)),
+                  Text('Заметок пока нет...', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w500)),
                   IconButton(
                       style: IconButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,

@@ -45,7 +45,7 @@ Widget buttonIcon(String buttonName){
         spacing: 1,
         children: [
           icon,
-          Text(buttonName, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600))
+          Text(buttonName, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600, color: Colors.white))
         ],
       ),
     );

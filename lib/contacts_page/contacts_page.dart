@@ -87,10 +87,10 @@ class _ContactPage extends State<ContactsPage>{
               spacing: 3,
               children: [
                 icon,
-                Text(key, style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.black))
+                Text(key, style: Theme.of(context).textTheme.headlineMedium)
               ],
             ),
-            Text('Контактные данные: $value', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black), maxLines: isSelected ? 3 : 1)
+            Text('Контактные данные: $value', style: Theme.of(context).textTheme.bodyMedium, maxLines: isSelected ? 3 : 1)
             ],
           ),
         ),

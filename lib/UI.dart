@@ -19,6 +19,14 @@ class MyApp extends StatefulWidget{
 }
 
 class _MyApp extends State<MyApp>{
+  ThemeMode themeMode = ThemeMode.system;
+
+  void changeTheme(ThemeMode mode){
+    setState(() {
+      themeMode = mode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,9 +41,14 @@ class _MyApp extends State<MyApp>{
         '/notes/page' : (context) => const NotePage(),
         '/settings' : (context) => const SettingsPage(),
         '/settings/info' : (context) => const SettingInfoPage(),
-        '/settings/theme' : (context) => const SettingsThemePage()
+        '/settings/theme' : (context) => SettingsThemePage(
+          themeMode: themeMode,
+          onThemeChanged: changeTheme,
+        )
       },
       theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
+      themeMode: themeMode,
     );
   }
 }
