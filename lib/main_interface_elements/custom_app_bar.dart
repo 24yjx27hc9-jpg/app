@@ -29,12 +29,14 @@ class CustomAppBar extends StatelessWidget{
   }
 
   Widget _chapterPill(BuildContext context, String text){
+    final colors = Theme.of(context).colorScheme;
+    final theme = MediaQuery.of(context).platformBrightness;
     String? page = ModalRoute.of(context)?.settings.name;
     Widget chapterPill = Container(
         height: 44,
         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 13),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.tertiary,
+            color: theme == Brightness.light ? colors.tertiary : colors.tertiaryContainer,
             borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomLeft: Radius.circular(10))
         ),
         child: _checkArrow(context)
@@ -53,12 +55,13 @@ class CustomAppBar extends StatelessWidget{
   }
 
   Widget _titlePill(BuildContext context, String text){
+    final colors = Theme.of(context).colorScheme;
+    final theme = MediaQuery.of(context).platformBrightness;
     return Container(
       height: 44,
         padding: EdgeInsets.symmetric(horizontal: 22, vertical: 13),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primary,
-
+            color: theme == Brightness.light ? colors.primary : colors.primaryContainer,
             borderRadius: BorderRadius.circular(10)),
         child: Text(
             titleText, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: Colors.white), overflow: TextOverflow.ellipsis, textAlign: TextAlign.center)

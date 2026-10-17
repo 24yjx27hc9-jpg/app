@@ -22,7 +22,7 @@ class AppTheme {
   );
   static ThemeData dark = ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF4EABC7),
+    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF0C2E46),
     brightness: Brightness.dark),
     textTheme: TextTheme(
         bodySmall: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontFamily: 'Inter'),

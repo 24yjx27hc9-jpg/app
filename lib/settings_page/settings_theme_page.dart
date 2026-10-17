@@ -40,7 +40,7 @@ class _SettingsThemePage extends State<SettingsThemePage>{
                   Container(
                     height: 40,
                     decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primaryContainer,
+                        color: Colors.lightBlue,
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5))
                     ),
                     child: Row(

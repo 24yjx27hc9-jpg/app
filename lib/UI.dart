@@ -10,6 +10,7 @@ import 'settings_page/settings_page.dart';
 import 'notes_page/note_page.dart';
 import 'settings_page/setting_info_page.dart';
 import 'settings_page/settings_theme_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -21,7 +22,40 @@ class MyApp extends StatefulWidget{
 class _MyApp extends State<MyApp>{
   ThemeMode themeMode = ThemeMode.system;
 
-  void changeTheme(ThemeMode mode){
+  @override
+  void initState() {
+    loadTheme();
+    super.initState();
+  }
+
+  Future<void> loadTheme() async{
+    final prefs = await SharedPreferences.getInstance();
+    final themePrefs = prefs.getString('themeMode');
+    if (themePrefs == null) return;
+    setState(() {
+      switch(themePrefs){
+        case 'light':
+          themeMode = ThemeMode.light;
+        case 'dark':
+          themeMode = ThemeMode.dark;
+        case 'system':
+          themeMode = ThemeMode.system;
+      }
+    });
+  }
+
+  Future<void> changeTheme(ThemeMode mode) async{
+    final prefs = await SharedPreferences.getInstance();
+    String themeName;
+    switch(mode){
+      case ThemeMode.system:
+        themeName = 'system';
+      case ThemeMode.light:
+        themeName = 'light';
+      case ThemeMode.dark:
+        themeName = 'dark';
+    }
+    prefs.setString('themeMode', themeName);
     setState(() {
       themeMode = mode;
     });

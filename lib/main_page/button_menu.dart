@@ -65,7 +65,7 @@ class _ButtonMenu extends State<ButtonMenu>{
               alignment: AlignmentGeometry.bottomLeft,
               child: Text(
                 'Информация',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.black),
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
           ),

@@ -108,7 +108,7 @@ class _SettingsPage extends State<SettingsPage>{
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       schoolLogo(),
-                      Text('МБОУ СОШ 9', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.black)),
+                      Text('МБОУ СОШ 9', style: Theme.of(context).textTheme.titleMedium),
                     ],
                   ),
                 ),
